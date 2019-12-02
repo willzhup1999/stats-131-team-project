@@ -44,7 +44,11 @@ barplot(table(Mischief$DAY, Mischief$HOUR), beside = TRUE, col = rainbow_hcl(31)
 barplot(table(Mischief$HOUR, Mischief$DAY), beside = TRUE, col = rainbow_hcl(31))
 ```
 
-Mischief: A huge outlier in June 2011. No specific trend. Decline over years. Days: slight increase: 6th-31th.
+#Mischief:
+Year: A huge outlier in June 2011. Decline over years.
+Month: No specific trend
+Day: Slight increase: 6th-31th.
+Minute: No specific trend
 
 
 ```{r}
@@ -55,7 +59,11 @@ barplot(table(Theft.Vehicle$DAY, Theft.Vehicle$HOUR), beside = TRUE, col = rainb
 barplot(table(Theft.Vehicle$HOUR, Theft.Vehicle$DAY), beside = TRUE, col = rainbow_hcl(31))
 ```
 
-Vehicle theft over years has a U-shape. 2011-2013 have the lowest number of Vehicle theft. No specific trend over months. Days: increase: 8th-31th.
+#Vehicle theft
+Year: U-shape. 2011-2013 have the lowest number of Vehicle theft.
+Month: No specific trend
+Day: increase: 8th-31th
+Minute: No specific trend
 
 
 ```{r}
@@ -66,7 +74,12 @@ barplot(table(Theft.Bicycle$DAY, Theft.Bicycle$HOUR), beside = TRUE, col = rainb
 barplot(table(Theft.Bicycle$HOUR, Theft.Bicycle$DAY), beside = TRUE, col = rainbow_hcl(31))
 ```
 
-Bicycle theft shows a bell-curve over months. In the middle of the year, there are more number of bicycle theft. An increasing trend of bicycle theft over years. Days: increase: 8th-31th.
+#Bicycle theft
+Year: An increasing trend of bicycle theft over years.
+Month: Bell-curve over months.In the middle of the year, there are more number of bicycle theft.
+Day: increase: 8th-31th.
+Minute: No specific trend
+
 
 
 ```{r}
@@ -76,8 +89,11 @@ barplot(table(Offence$MONTH, Offence$YEAR), beside = TRUE, col = rainbow_hcl(15)
 
 ```
 
-No specific trend over month. A slight decreasing over years. 
-
+#Offense  
+Year: A slight decreasing over years.
+Month: No specific trend
+Day: No specific trend
+Minute: No specific trend
 
 ```{r}
 table(Collision.F$YEAR,Collision.F$MONTH)
@@ -87,8 +103,11 @@ barplot(table(Collision.F$DAY, Collision.F$HOUR), beside = TRUE, col = rainbow_h
 barplot(table(Collision.F$HOUR, Collision.F$DAY), beside = TRUE, col = rainbow_hcl(31))
 ```
 
-No specific trend over month. A slight decreasing over years. 
-
+#Vehicle Collision or Pedestrian Struck (with Fatality)
+Year: A slight decreasing over years.
+Month: No specific trend
+Day: No specific trend
+Minute: No specific trend
 
 ```{r}
 table(Collision.I$YEAR,Collision.I$MONTH)
@@ -98,7 +117,12 @@ barplot(table(Collision.I$DAY, Collision.I$HOUR), beside = TRUE, col = rainbow_h
 barplot(table(Collision.I$HOUR, Collision.I$DAY), beside = TRUE, col = rainbow_hcl(31))
 ```
 
-Vehicle Collision or Pedestrian Struck (with Injury) shows a U-shape over years. There is a huge decline in 2006, then bounce back after 2008. Days: increase: 6th-17th; decrease: 17th-31th
+#Vehicle Collision or Pedestrian Struck (with Injury)
+Year: U-shape over years. There is a huge decline in 2006, then bounce back after 2008.
+Month: No specific trend
+Day: increase: 6th-17th; decrease: 17th-31th
+Minute: No specific trend
+
 
 
 ```{r}
@@ -109,7 +133,11 @@ barplot(table(Break.Commercial$DAY, Break.Commercial$HOUR), beside = TRUE, col =
 barplot(table(Break.Commercial$HOUR, Break.Commercial$DAY), beside = TRUE, col = rainbow_hcl(31))
 ```
 
-Huge outliers in September in 2004 and June in 2011. 'Break and Enter Commercial' shows a U-shape over years. Decline:2003 - 2011; Increase: 2011-2017. 'Break and Enter Commercial' shows a U-shape over days in a month, hitting the lowest on 11th-15th.
+#Break and Enter Commercial
+Year: Huge outliers in September in 2004 and June in 2011. A U-shape over years. Decline:2003 - 2011; Increase: 2011-2017.
+Month: No specific trend
+Day: U-shape over days in a month, hitting the lowest on 11th-15th.
+Minute: No specific trend
 
 
 ```{r}
@@ -120,4 +148,9 @@ barplot(table(Break.ResidentialOther$DAY, Break.ResidentialOther$HOUR), beside =
 barplot(table(Break.ResidentialOther$HOUR, Break.ResidentialOther$DAY), beside = TRUE, col = rainbow_hcl(31))
 ```
 
-A decling trend over years, especially 2003-2008. 'Break and Enter Residential/Other' happens either in the beginning of the year or in the ending of the year. Days: increase: 6th-31th.
+#Break and Enter Residential/Other
+Year: A decling trend over years, especially 2003-2008
+Month: Happens either in the beginning of the year or in the ending of the year
+Day: increase: 6th-31th.
+Minute: No specific trend
+
