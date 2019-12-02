@@ -1,0 +1,108 @@
+---
+title: "CrimeInVancouver"
+author: "Jiancong Qi"
+date: "11/26/2019"
+output: html_document
+---
+```{r}
+library(dplyr)
+library(tidyr)
+library(colorspace)
+library(xgboost)
+crime = read.csv("crime.csv")
+googletrend = read.csv("googletrend.csv")
+```
+
+
+```{r}
+levels(crime$TYPE)
+Break.Commercial = crime %>% filter(crime$TYPE == "Break and Enter Commercial")
+Break.ResidentialOther = crime %>% filter(crime$TYPE == "Break and Enter Residential/Other")
+Homicide = crime %>% filter(crime$TYPE == "Homicide")
+Mischief = crime %>% filter(crime$TYPE == "Mischief")
+Offence = crime %>% filter(crime$TYPE == "Offence Against a Person")
+Other.Theft = crime %>% filter(crime$TYPE == "Other Theft")
+Theft.Vehicle = crime %>% filter(crime$TYPE == "Theft from Vehicle")
+Theft.Bicycle = crime %>% filter(crime$TYPE == "Theft of Bicycle")
+Collision.F = crime %>% filter(crime$TYPE == "Vehicle Collision or Pedestrian Struck (with Fatality)")
+Collision.I = crime %>% filter(crime$TYPE == "Vehicle Collision or Pedestrian Struck (with Injury)")
+```
+
+
+```{r}
+table(Homicide$YEAR, Homicide$MONTH)
+barplot(table(Homicide$YEAR, Homicide$MONTH), beside = TRUE, col = rainbow_hcl(15))
+barplot(table(Homicide$MONTH, Homicide$YEAR), beside = TRUE, col = rainbow_hcl(15))
+```
+
+
+```{r}
+table(Mischief$YEAR,Mischief$MONTH)
+barplot(table(Mischief$YEAR, Mischief$MONTH), beside = TRUE, col = rainbow_hcl(15))
+barplot(table(Mischief$MONTH, Mischief$YEAR), beside = TRUE, col = rainbow_hcl(15))
+```
+
+A huge outlier in June 2011. No specific trend. Decline over years
+
+
+```{r}
+table(Theft.Vehicle$YEAR,Theft.Vehicle$MONTH)
+barplot(table(Theft.Vehicle$YEAR, Theft.Vehicle$MONTH), beside = TRUE, col = rainbow_hcl(15))
+barplot(table(Theft.Vehicle$MONTH, Theft.Vehicle$YEAR), beside = TRUE, col = rainbow_hcl(15))
+```
+
+Vehicle theft over years has a U-shape. 2011-2013 have the lowest number of Vehicle theft. No specific trend over months.
+
+
+```{r}
+table(Theft.Bicycle$YEAR,Theft.Bicycle$MONTH)
+barplot(table(Theft.Bicycle$YEAR, Theft.Bicycle$MONTH), beside = TRUE, col = rainbow_hcl(15))
+barplot(table(Theft.Bicycle$MONTH, Theft.Bicycle$YEAR), beside = TRUE, col = rainbow_hcl(15))
+```
+
+Bicycle theft shows a bell-curve over months. In the middle of the year, there are more number of bicycle theft. An increasing trend of bicycle theft over years.
+
+
+```{r}
+table(Offence$YEAR,Offence$MONTH)
+barplot(table(Offence$YEAR, Offence$MONTH), beside = TRUE, col = rainbow_hcl(15))
+barplot(table(Offence$MONTH, Offence$YEAR), beside = TRUE, col = rainbow_hcl(15))
+```
+
+No specific trend over month. A slight decreasing over years. 
+
+
+```{r}
+table(Collision.F$YEAR,Collision.F$MONTH)
+barplot(table(Collision.F$YEAR, Collision.F$MONTH), beside = TRUE, col = rainbow_hcl(15))
+barplot(table(Collision.F$MONTH, Collision.F$YEAR), beside = TRUE, col = rainbow_hcl(15))
+```
+
+No specific trend over month. A slight decreasing over years. 
+
+
+```{r}
+table(Collision.I$YEAR,Collision.I$MONTH)
+barplot(table(Collision.I$YEAR, Collision.I$MONTH), beside = TRUE, col = rainbow_hcl(15))
+barplot(table(Collision.I$MONTH, Collision.I$YEAR), beside = TRUE, col = rainbow_hcl(15))
+```
+
+Vehicle Collision or Pedestrian Struck (with Injury) shows a U-shape over years. There is a huge decline in 2006, then bounce back after 2008.
+
+
+```{r}
+table(Break.Commercial$YEAR,Break.Commercial$MONTH)
+barplot(table(Break.Commercial$YEAR, Break.Commercial$MONTH), beside = TRUE, col = rainbow_hcl(15))
+barplot(table(Break.Commercial$MONTH, Break.Commercial$YEAR), beside = TRUE, col = rainbow_hcl(15))
+```
+
+Huge outliers in September in 2004 and June in 2011. 'Break and Enter Commercial' shows a U-shape over years. Decline:2003 - 2011; Increase: 2011-2017.
+
+
+```{r}
+table(Break.ResidentialOther$YEAR,Break.ResidentialOther$MONTH)
+barplot(table(Break.ResidentialOther$YEAR, Break.ResidentialOther$MONTH), beside = TRUE, col = rainbow_hcl(15))
+barplot(table(Break.ResidentialOther$MONTH, Break.ResidentialOther$YEAR), beside = TRUE, col = rainbow_hcl(15))
+```
+
+A decling trend over years, especially 2003-2008. 'Break and Enter Residential/Other' happens either in the beginning of the year or in the ending of the year.
